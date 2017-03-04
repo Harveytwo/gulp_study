@@ -40,10 +40,11 @@ $ npm install gulp-uglify --save-dev  （一个js压缩插件）
 $ npm install gulp-uglify gulp-minify-css gulp-imagemin --save-dev
 
 #### 使用插件 #### 安装完插件之后，就可以在配置文件中使用插件，比如使用js压缩插件：
-安装重命名插件：
+```
+// 安装重命名插件：
 $ npm install --save-dev gulp-rename   //官网上安装插件是这样写的
 
-需要用到哪个插件，则需require哪个插件：
+// 需要用到哪个插件，则需require哪个插件：
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');  //js压缩
 var htmlmin = require('gulp-htmlmin'); //html压缩
@@ -53,7 +54,7 @@ var rename = require("gulp-rename");//重命名
 var watch = require('gulp-watch');//监听
 var swig = require('gulp-swig');//模板引擎
 
-定义jsmin任务(task):
+// 定义jsmin任务(task):
 gulp.task('jsmin', function() {
     //将你的默认的任务代码放在这里,命令行gulp执行的aaa任务
     return gulp.src('app/js/*.js')
@@ -64,7 +65,7 @@ gulp.task('jsmin', function() {
         .pipe(gulp.dest('output/js/'))
 })
 
-定义cssmin任务：
+// 定义cssmin任务：
 gulp.task('cssmin', function() {
     return gulp.src('app/css/*.css')
         .pipe(autoprefixer({
@@ -80,21 +81,21 @@ gulp.task('cssmin', function() {
         .pipe(gulp.dest('output/css/'))
 })
 
-使用swig模板：
+// 使用swig模板：
 gulp.task('swig', function() {
     return gulp.src('app/page/*.html')
         .pipe(swig({defaults:{cache:false}}))//Avoid caching when watching/compiling html templates with BrowserSync, etc.
         .pipe(gulp.dest('app/views'));
 })
-这个模板不太懂使用！！
+// 这个模板不太懂使用！！
 
 
 
-安装监听插件：
+// 安装监听插件：
 $ npm install gulp-watch --save-dev
 
-定义watch任务(task):
+// 定义watch任务(task):
 gulp.task('watch', function() {
     gulp.watch('app/js/*.js',['jsmin']);
 })
-
+```
